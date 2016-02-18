@@ -3,29 +3,32 @@
     var canvas = document.getElementById('canvas');
     var ctx = canvas.getContext('2d');
 
-    ctx.strokeStyle = 'blue';
+    var degree = 13;
+    var dragon1Color = 'white';
+    var dragon2Color = 'blue';
+    var dragon3Color = 'brown';
+    var dragon4Color = 'red';
+    var timeout = 0;
 
-    var degree = 12;
     var dragonSet = genDragon(degree);
 
     var startX = 300;
     var startY = 300;
-    var r = 3;
-    var th = -90;
+    var r = 1;
+    var th = 0;
     var step = 1;
-    var timeout = 50;
 
-    var followPath = function(direction) {
+    var followPath = function(rotation) {
       var x = startX;
       var y = startY;
-      var rOffset = r * direction;
       var thRadians = (th * Math.PI) / 180;
-      var currentTh = thRadians;
+      var rotRadians = (rotation * Math.PI) / 180;
+      var currentTh = thRadians + rotRadians;
 
       dragonSet.forEach(function(el) {
         currentTh += thRadians * el;
-        x += rOffset * Math.cos(currentTh);
-        y += rOffset * Math.sin(currentTh);
+        x += r * Math.cos(currentTh);
+        y += r * Math.sin(currentTh);
         ctx.lineTo(x, y);
       });
     };
@@ -33,10 +36,24 @@
     var draw = function () {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.beginPath();
+      ctx.strokeStyle = dragon1Color;
       ctx.moveTo(startX, startY);
-      followPath(1);
+      followPath(0);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.strokeStyle = dragon2Color;
       ctx.moveTo(startX, startY);
-      followPath(-1);
+      followPath(90);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.strokeStyle = dragon3Color;
+      ctx.moveTo(startX, startY);
+      followPath(180);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.strokeStyle = dragon4Color;
+      ctx.moveTo(startX, startY);
+      followPath(270);
       ctx.stroke();
 
       th += step;
@@ -44,7 +61,7 @@
     };
 
     draw();
-    setInterval(draw, 0);
+    setInterval(draw, timeout);
 
   });
 
