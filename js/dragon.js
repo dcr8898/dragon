@@ -64,6 +64,10 @@
 
     var drawWrapper = function(timestamp) {
       timeout = parseInt(controls.elements["timeout"].value);
+      dragon1Color = controls.elements["dragon1color"].value;
+      dragon2Color = controls.elements["dragon2color"].value;
+      dragon3Color = controls.elements["dragon3color"].value;
+      dragon4Color = controls.elements["dragon4color"].value;
 
       if (!lastDraw) {
         lastDraw = timestamp;
