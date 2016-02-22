@@ -70,9 +70,11 @@
         draw();
       }
       var now = Math.floor(timestamp);
-      if ((now - lastDraw) > timeout) draw();
+      if ((now - lastDraw) > timeout) {
+        draw();
+        lastDraw = now;
+      }
       requestAnimationFrame(drawWrapper);
-      lastDraw = now;
     };
 
     requestAnimationFrame(drawWrapper);
