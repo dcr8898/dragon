@@ -3,20 +3,21 @@
     var canvas = document.getElementById('canvas');
     var ctx = canvas.getContext('2d');
 
-    var degree = 13;
-    var dragon1Color = 'white';
-    var dragon2Color = 'blue';
-    var dragon3Color = 'brown';
-    var dragon4Color = 'red';
-    var timeout = 0;
+    var controls = document.getElementById('controls')
+    var dragon1Color = 'HotPink';
+    var dragon2Color = 'Purple';
+    var dragon3Color = 'Teal';
+    var dragon4Color = 'Magenta';
+    var timeout = 50;
 
-    var dragonSet = genDragon(degree);
-
+    var maxDegree = 10;
+    var dragonSet = genDragon(maxDegree);
     var startX = 300;
     var startY = 300;
     var r = 1;
     var th = 0;
     var step = 1;
+    var lastDraw = null;
 
     var followPath = function(rotation) {
       var x = startX;
@@ -33,7 +34,7 @@
       });
     };
 
-    var draw = function () {
+    var draw = function() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.beginPath();
       ctx.strokeStyle = dragon1Color;
@@ -58,20 +59,33 @@
 
       th += step;
       if (th == 90 || th == -90) step *= -1;
+
     };
 
-    draw();
-    setInterval(draw, timeout);
+    var drawWrapper = function(timestamp) {
+      timeout = parseInt(controls.elements["timeout"].value);
+
+      if (!lastDraw) {
+        lastDraw = Math.floor(timestamp);
+        draw();
+      }
+      var now = Math.floor(timestamp);
+      if ((now - lastDraw) > timeout) draw();
+      requestAnimationFrame(drawWrapper);
+      lastDraw = now;
+    };
+
+    requestAnimationFrame(drawWrapper);
 
   });
 
   function genDragon(degree) {
-    var set = [];
+    var dragonSet = [];
     for (var i = 1, len = Math.pow(2, degree); i < len; i++) {
-      bin = '0' + i.toString(2);
-      set.push(Math.pow(-1, parseInt(bin[bin.lastIndexOf('1') - 1])));
+      var bin = '0' + i.toString(2);
+      dragonSet.push(Math.pow(-1, parseInt(bin[bin.lastIndexOf('1') - 1])));
     }
-    return set;
+    return dragonSet;
   }
 
 })();
