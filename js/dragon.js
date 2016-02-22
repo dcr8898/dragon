@@ -66,11 +66,11 @@
       timeout = parseInt(controls.elements["timeout"].value);
 
       if (!lastDraw) {
-        lastDraw = Math.floor(timestamp);
+        lastDraw = timestamp;
         draw();
       }
-      var now = Math.floor(timestamp);
-      if ((now - lastDraw) > timeout) {
+      var now = timestamp;
+      if (now - lastDraw > timeout) {
         draw();
         lastDraw = now;
       }
