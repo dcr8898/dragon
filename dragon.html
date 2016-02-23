@@ -9,12 +9,22 @@
 </head>
 <body>
 <div class="container">
+  Fun with fractals: the Dragon Curve<br/>
+  (see the source code at <a href="https://github.com/dcr8898/dragon">https://github.com/dcr8898/dragon</a>)
   <canvas id="canvas" width="600" height="600"></canvas>
   <form id="controls">
-    <label for="dragon1color">Dragon 1 Color: <input type="color" name="dragon1color" value="#FF69B4"></label>
-    <label for="dragon1color">Dragon 2 Color: <input type="color" name="dragon2color" value="#800080"></label>
-    <label for="dragon1color">Dragon 3 Color: <input type="color" name="dragon3color" value="#008080"></label>
-    <label for="dragon1color">Dragon 4 Color: <input type="color" name="dragon4color" value="#FF00FF"></label>
+    Dragon 1
+    <label for="dragon1color">Color: <input type="color" name="dragon1color" value="#FF69B4"></label>
+    <label for="dragon1degree">Size: <input type="number" name="dragon1degree" min="2" max="16" value="12"></label><br/>
+    Dragon 2
+    <label for="dragon2color">Color: <input type="color" name="dragon2color" value="#800080"></label>
+    <label for="dragon2degree">Size: <input type="number" name="dragon2degree" min="2" max="16" value="12"></label><br/>
+    Dragon 3
+    <label for="dragon3color">Color: <input type="color" name="dragon3color" value="#008080"></label>
+    <label for="dragon3degree">Size: <input type="number" name="dragon3degree" min="2" max="16" value="12"></label><br/>
+    Dragon 4
+    <label for="dragon4color">Color: <input type="color" name="dragon4color" value="#FF00FF"></label>
+    <label for="dragon4degree">Size: <input type="number" name="dragon4degree" min="2" max="16" value="12"></label><br/>
     <label for="timeout">Timeout (ms):</label>
     <input type="range" name="timeout" min="0" value="50">
   </form>
