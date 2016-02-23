@@ -10,7 +10,7 @@
     var dragon4Color = 'Magenta';
     var timeout = 50;
 
-    var maxDegree = 10;
+    var maxDegree = 13;
     var dragonSet = genDragon(maxDegree);
     var startX = 300;
     var startY = 300;
